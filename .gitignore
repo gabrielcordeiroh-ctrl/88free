@@ -1,0 +1,8 @@
+# Ignorar arquivos de configuração local do Supabase
+backend/supabase/.temp/
+backend/supabase/.env
+
+# Ignorar logs e arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+node_modules/
