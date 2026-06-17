@@ -7,7 +7,7 @@ BEGIN
         VALUES (NEW.trabalhador_id, 'Vaga aprovada, vamo trabalhar!');
     END IF;
 
-    -- 2. Cenário de Contrato Cancelado
+    -- 2. Cenário de Contrato Cancelado (Só ocorre após o estabelecimento aceitar e depois cancelar o match)
     IF NEW.status_alocacao = 'cancelado' AND OLD.status_alocacao = 'confirmado' THEN
         INSERT INTO public.notificacoes (trabalhador_id, mensagem)
         VALUES (NEW.trabalhador_id, 'Poxa, o estabelecimento cancelou a vaga')
