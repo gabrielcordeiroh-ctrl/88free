@@ -2,8 +2,8 @@
 CREATE TABLE IF NOT EXISTS public.profiles (
     id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
     full_name TEXT NOT NULL,
-    cpf TEXT CONSTRAINT cpf_length CHECK (char_length(cpf) = 11),
-    phone TEXT,
+    cpf TEXT CONSTRAINT cpf_length CHECK (char_length(cpf) = 11) NOT NULL,
+    phone TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS public.vagas (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     estabelecimento_id UUID REFERENCES public.estabelecimentos ON DELETE CASCADE NOT NULL,
     funcao TEXT NOT NULL,
-    data_diaria DATE NOT NULL,
+    data_diaria TIMESTAMPTZ NOT NULL,
     valor_pagamento NUMERIC(10, 2) NOT NULL,
     status TEXT DEFAULT 'aberta' CHECK (status IN ('aberta', 'preenchida', 'cancelada', 'concluida')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL

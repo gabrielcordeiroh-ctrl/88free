@@ -15,7 +15,7 @@ BEGIN
 
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
 
 -- 3. O Gatilho que dispara a função acima
 CREATE OR REPLACE TRIGGER trigger_notifica_match
